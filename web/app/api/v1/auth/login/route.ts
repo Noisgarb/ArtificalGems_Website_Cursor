@@ -53,9 +53,11 @@ export async function POST(request: NextRequest) {
       })
     );
   } catch (e) {
-    console.error(e);
-    return Response.json(err(ErrorCodes.INTERNAL, "服务器错误"), {
-      status: 500,
-    });
+    console.error("[auth/login]", e);
+    const message = e instanceof Error ? e.message : String(e);
+    return Response.json(
+      err(ErrorCodes.INTERNAL, process.env.NODE_ENV === "development" ? message : "服务器错误"),
+      { status: 500 }
+    );
   }
 }
