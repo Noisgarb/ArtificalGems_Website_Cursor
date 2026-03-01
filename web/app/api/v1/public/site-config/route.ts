@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { ok, err, ErrorCodes } from "@/lib/api-response";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const configs = await prisma.siteConfig.findMany();

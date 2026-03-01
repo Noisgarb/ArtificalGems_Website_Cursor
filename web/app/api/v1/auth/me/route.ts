@@ -2,6 +2,8 @@ import { NextRequest } from "next/server";
 import { ok, err, ErrorCodes } from "@/lib/api-response";
 import { getTokenFromRequest, verifyToken } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
     const token = getTokenFromRequest(request);

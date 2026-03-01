@@ -4,6 +4,8 @@ import { ok, err, ErrorCodes } from "@/lib/api-response";
 import { requireAdmin } from "@/lib/auth-admin";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 const createProductSchema = z.object({
   name: z.string().min(1),
   material: z.string().optional(),

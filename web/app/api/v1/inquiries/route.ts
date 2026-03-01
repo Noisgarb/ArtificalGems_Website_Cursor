@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { ok, err, ErrorCodes } from "@/lib/api-response";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 const createInquirySchema = z.object({
   name: z.string().min(1),
   email: z.string().email().optional().nullable(),
