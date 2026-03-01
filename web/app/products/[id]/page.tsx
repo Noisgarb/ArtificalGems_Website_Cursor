@@ -10,8 +10,24 @@ async function getProduct(id: number) {
     include: { category: { select: { id: true, name: true } } },
   });
   if (!p) return null;
-  const images = p.imagesJson ? (JSON.parse(p.imagesJson) as string[]) : [];
-  const tags = p.tagsJson ? (JSON.parse(p.tagsJson) as string[]) : [];
+  let images: string[] = [];
+  let tags: string[] = [];
+  if (p.imagesJson?.trim()) {
+    try {
+      images = (JSON.parse(p.imagesJson) as string[]) ?? [];
+      if (!Array.isArray(images)) images = [];
+    } catch {
+      images = [];
+    }
+  }
+  if (p.tagsJson?.trim()) {
+    try {
+      tags = (JSON.parse(p.tagsJson) as string[]) ?? [];
+      if (!Array.isArray(tags)) tags = [];
+    } catch {
+      tags = [];
+    }
+  }
   const { imagesJson, tagsJson, ...rest } = p;
   return { ...rest, images, tags };
 }

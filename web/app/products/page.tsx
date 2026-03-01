@@ -20,7 +20,15 @@ async function getProducts() {
   });
   return items.map((p) => {
     const { imagesJson, ...rest } = p;
-    const images = imagesJson ? (JSON.parse(imagesJson) as string[]) : [];
+    let images: string[] = [];
+    if (imagesJson && imagesJson.trim()) {
+      try {
+        images = JSON.parse(imagesJson) as string[];
+        if (!Array.isArray(images)) images = [];
+      } catch {
+        images = [];
+      }
+    }
     return { ...rest, images };
   });
 }
