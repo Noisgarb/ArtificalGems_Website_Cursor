@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String
+  parentId  Int?      @map("parent_id")
+  sortOrder Int       @default(0) @map("sort_order")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  parent    Category?  @relation("CategoryToCategory", fields: [parentId], references: [id])
+  children  Category[] @relation("CategoryToCategory")
+  products  Product[]
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  material    String?
+  color       String?
+  shape       String?
+  sizeRange   String?   @map("size_range")
+  priceRange  String?   @map("price_range")
+  description String?  
+  imagesJson  String?   @default("[]") @map("images_json")
+  categoryId  Int?      @map("category_id")
+  tagsJson    String?   @default("[]") @map("tags_json")
+  status      String    @default("online")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  category    Category? @relation(fields: [categoryId], references: [id])
+  inquiries   Inquiry[]
+  cases       Case[]
+}
+
+model Inquiry {
+  id            Int           @id @default(autoincrement())
+  name          String        @map("name")
+  email         String?
+  wechat        String?
+  whatsapp      String?
+  country       String?
+  type          String        @map("type")
+  budgetRange   String?       @map("budget_range")
+  message       String       
+  sourceChannel String?       @map("source_channel")
+  sourceUrl     String?       @map("source_url")
+  productId     Int?          @map("product_id")
+  status        String        @default("pending")
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+  product       Product?      @relation(fields: [productId], references: [id])
+  notes         InquiryNote[]
+}
+
+model InquiryNote {
+  id         Int      @id @default(autoincrement())
+  inquiryId  Int      @map("inquiry_id")
+  operatorId Int?     @map("operator_id")
+  content    String  
+  createdAt  DateTime @default(now()) @map("created_at")
+  inquiry    Inquiry  @relation(fields: [inquiryId], references: [id], onDelete: Cascade)
+  operator   AdminUser? @relation(fields: [operatorId], references: [id])
+}
+
+model Article {
+  id         Int      @id @default(autoincrement())
+  title      String
+  slug       String   @unique
+  content    String  
+  coverImage String?  @map("cover_image")
+  category   String?
+  lang       String   @default("zh-CN")
+  seoTitle   String?  @map("seo_title")
+  seoDesc    String?  @map("seo_desc")
+  status     String   @default("draft")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+}
+
+model Case {
+  id                Int       @id @default(autoincrement())
+  title             String
+  description       String  
+  imagesJson        String?  @default("[]") @map("images_json")
+  relatedProductId  Int?     @map("related_product_id")
+  lang              String    @default("zh-CN")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  product           Product?  @relation(fields: [relatedProductId], references: [id])
+}
+
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String   @map("password_hash")
+  role         String   @default("admin")
+  status       String   @default("active")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  inquiryNotes InquiryNote[]
+}
+
+model SiteConfig {
+  id          Int      @id @default(autoincrement())
+  key         String   @unique
+  value       String  
+  description String?
+  updatedAt   DateTime @updatedAt @map("updated_at")
+}
