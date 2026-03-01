@@ -50,6 +50,12 @@ export function AdminNav({ user }: { user: User | null }) {
           >
             配置
           </Link>
+          <Link
+            href="/admin/profile"
+            className={`text-sm ${pathname?.startsWith("/admin/profile") ? "font-semibold text-blue-600" : "text-gray-600 hover:text-blue-600"}`}
+          >
+            修改密码
+          </Link>
         </nav>
         <div className="flex items-center gap-4">
           {user && (

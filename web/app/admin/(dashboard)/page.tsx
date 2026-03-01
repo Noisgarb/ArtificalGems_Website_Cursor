@@ -26,6 +26,13 @@ export default function AdminDashboardPage() {
           <h3 className="font-medium">站点配置</h3>
           <p className="mt-1 text-sm text-gray-500">联系方式与 SEO 配置</p>
         </Link>
+        <Link
+          href="/admin/profile"
+          className="rounded-lg border bg-white p-6 shadow-sm transition hover:shadow-md"
+        >
+          <h3 className="font-medium">修改密码</h3>
+          <p className="mt-1 text-sm text-gray-500">修改当前管理员登录密码</p>
+        </Link>
       </div>
     </>
   );
