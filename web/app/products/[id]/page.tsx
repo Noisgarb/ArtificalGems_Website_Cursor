@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 async function getProduct(id: number) {
   const p = await prisma.product.findFirst({
     where: { id, status: "online" },
