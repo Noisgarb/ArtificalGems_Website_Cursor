@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { getAuthHeaders } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { getAuthHeaders, removeToken } from "@/lib/auth-client";
 
 export default function AdminProfilePage() {
+  const router = useRouter();
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -33,10 +35,14 @@ export default function AdminProfilePage() {
       .then((res) => res.json())
       .then((json) => {
         if (json.code === 0) {
-          setMessage({ type: "ok", text: "密码已修改，请使用新密码重新登录。" });
+          setMessage({ type: "ok", text: "密码已修改，请重新登录。" });
+          removeToken();
           setCurrentPassword("");
           setNewPassword("");
           setConfirmPassword("");
+          setTimeout(() => {
+            router.replace("/admin/login");
+          }, 800);
         } else {
           setMessage({ type: "err", text: json.message || "修改失败" });
         }
