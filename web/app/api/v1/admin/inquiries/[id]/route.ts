@@ -86,7 +86,7 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
         prisma.inquiryNote.create({
           data: {
             inquiryId: id,
-            operatorId: admin.id,
+            operatorId: admin.userId,
             content: data.note,
           },
         }),
