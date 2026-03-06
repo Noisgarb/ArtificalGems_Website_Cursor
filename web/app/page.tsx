@@ -1,8 +1,10 @@
+import { ShowcaseCarousel } from "@/components/home/ShowcaseCarousel";
+
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-50">
       {/* 顶部导航 */}
-      <header className="border-b bg-white/80 backdrop-blur">
+      <header className="border-b bg-white/80 backdrop-blur nl-animate-fade-up">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2">
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-600 text-sm font-semibold text-white">
@@ -38,9 +40,9 @@ export default function HomePage() {
       </header>
 
       {/* 首屏 Hero 区域 */}
-      <section className="border-b bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-900">
+      <section className="border-b bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-900 nl-animate-gradient">
         <div className="mx-auto flex max-w-6xl flex-col items-start gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:flex-row lg:items-center lg:py-24">
-          <div className="flex-1 space-y-6 text-left text-white">
+          <div className="flex-1 space-y-6 text-left text-white nl-animate-fade-up">
             <p className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-emerald-100">
               宁林宝石 · 小批量灵活供货
             </p>
@@ -55,13 +57,13 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-6 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-600"
+                className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-6 py-2 text-sm font-medium text-white shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:bg-emerald-600"
               >
                 立即发送询盘
               </a>
               <a
                 href="/products"
-                className="inline-flex items-center justify-center rounded-full border border-white/40 px-6 py-2 text-sm font-medium text-white hover:border-white"
+                className="inline-flex items-center justify-center rounded-full border border-white/40 px-6 py-2 text-sm font-medium text-white transition-transform duration-200 hover:-translate-y-0.5 hover:border-white"
               >
                 浏览全部产品
               </a>
@@ -74,36 +76,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-8 flex-1 lg:mt-0">
-            <div className="relative mx-auto max-w-md rounded-3xl bg-white/5 p-5 shadow-2xl shadow-emerald-900/40 ring-1 ring-white/10">
-              <div className="grid grid-cols-3 gap-3">
-                <div className="h-24 rounded-2xl bg-gradient-to-br from-emerald-400 via-emerald-300 to-sky-400 opacity-90" />
-                <div className="h-24 rounded-2xl bg-gradient-to-br from-sky-300 via-indigo-300 to-fuchsia-400 opacity-90" />
-                <div className="h-24 rounded-2xl bg-gradient-to-br from-amber-300 via-orange-300 to-rose-400 opacity-90" />
-                <div className="h-24 rounded-2xl bg-gradient-to-br from-slate-200 via-slate-100 to-emerald-200 opacity-90" />
-                <div className="h-24 rounded-2xl bg-gradient-to-br from-emerald-500 via-teal-400 to-sky-400 opacity-90" />
-                <div className="h-24 rounded-2xl bg-gradient-to-br from-slate-800 via-slate-900 to-emerald-800 opacity-90" />
-              </div>
-              <div className="mt-4 rounded-2xl bg-slate-900/90 p-4 text-xs text-slate-200">
-                <div className="mb-2 flex items-center justify-between text-[11px] text-slate-300">
-                  <span>典型应用场景</span>
-                  <span>珠宝品牌 / 跨境电商 / 礼品公司</span>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="rounded-xl bg-slate-800/80 p-3">
-                    <div className="text-[11px] text-slate-400">适配客户</div>
-                    <div className="mt-1 text-xs font-medium text-emerald-100">
-                      独立珠宝设计师 / 淘宝天猫 / 独立站卖家
-                    </div>
-                  </div>
-                  <div className="rounded-xl bg-slate-800/80 p-3">
-                    <div className="text-[11px] text-slate-400">合作方式</div>
-                    <div className="mt-1 text-xs font-medium text-emerald-100">
-                      看样下单 · 来图定制 · 长期供货协议
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ShowcaseCarousel />
           </div>
         </div>
       </section>
@@ -111,7 +84,7 @@ export default function HomePage() {
       {/* 关于宁林宝石 / 公司简介 */}
       <section className="border-b bg-white">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.4fr_minmax(0,1fr)] lg:py-16">
-          <div className="space-y-4">
+          <div className="space-y-4 nl-animate-fade-up">
             <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">
               关于宁林宝石
             </h2>
@@ -155,7 +128,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="space-y-4 rounded-2xl border border-slate-100 bg-slate-50 p-5 text-sm text-slate-700">
+          <div className="space-y-4 rounded-2xl border border-slate-100 bg-slate-50 p-5 text-sm text-slate-700 nl-animate-fade-up-delay-1">
             <h3 className="text-sm font-semibold text-slate-900">
               适合正在寻找稳定人造宝石供应商的你
             </h3>
@@ -196,7 +169,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-5 md:grid-cols-3">
-            <div className="flex flex-col rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
+            <div className="flex flex-col rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100 nl-animate-fade-up">
               <div className="mb-3 h-1.5 w-12 rounded-full bg-emerald-500" />
               <h3 className="text-sm font-semibold text-slate-900">
                 实验室培育宝石
@@ -208,7 +181,7 @@ export default function HomePage() {
                 常见应用：主石、戒托、项链与耳饰等核心视觉石位。
               </div>
             </div>
-            <div className="flex flex-col rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
+            <div className="flex flex-col rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100 nl-animate-fade-up-delay-1">
               <div className="mb-3 h-1.5 w-12 rounded-full bg-sky-500" />
               <h3 className="text-sm font-semibold text-slate-900">
                 立方氧化锆 / 人造锆石
@@ -220,7 +193,7 @@ export default function HomePage() {
                 常见应用：电商爆款、礼品随附饰品、快时尚饰品。
               </div>
             </div>
-            <div className="flex flex-col rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
+            <div className="flex flex-col rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100 nl-animate-fade-up-delay-2">
               <div className="mb-3 h-1.5 w-12 rounded-full bg-amber-500" />
               <h3 className="text-sm font-semibold text-slate-900">
                 定制颜色与规格
@@ -248,7 +221,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-4">
-            <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-700">
+            <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-700 nl-animate-fade-up">
               <div className="text-xs font-semibold text-emerald-600">
                 01 · 稳定品质
               </div>
@@ -256,7 +229,7 @@ export default function HomePage() {
                 严选上游工厂与批次管理，对颜色偏差、切工对称性和杂质控制有稳定标准，减少因用料问题导致的退货率。
               </p>
             </div>
-            <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-700">
+            <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-700 nl-animate-fade-up-delay-1">
               <div className="text-xs font-semibold text-emerald-600">
                 02 · 灵活起订量
               </div>
@@ -264,7 +237,7 @@ export default function HomePage() {
                 支持从打样、小批量开始，陪伴你从产品验证期走向稳定放量，不用一开始就承担过高库存压力。
               </p>
             </div>
-            <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-700">
+            <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-700 nl-animate-fade-up-delay-2">
               <div className="text-xs font-semibold text-emerald-600">
                 03 · 沟通直接高效
               </div>
@@ -272,7 +245,7 @@ export default function HomePage() {
                 直接对接具体需求与产品应用场景，比单纯报规格更关注“你要卖给什么样的客户”，一起把产品做顺畅。
               </p>
             </div>
-            <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-700">
+            <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-700 nl-animate-fade-up-delay-3">
               <div className="text-xs font-semibold text-emerald-600">
                 04 · 透明与长期
               </div>

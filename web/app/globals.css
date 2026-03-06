@@ -1,3 +1,100 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 自定义动画：渐变流动、轻微浮动、淡入上移 */
+
+@keyframes nl-gradient-slow {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.nl-animate-gradient {
+  background-size: 200% 200%;
+  animation: nl-gradient-slow 18s ease-in-out infinite;
+}
+
+@keyframes nl-float-soft {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.nl-animate-float-soft {
+  animation: nl-float-soft 6s ease-in-out infinite;
+}
+
+@keyframes nl-fade-up-soft {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.nl-animate-fade-up {
+  animation: nl-fade-up-soft 0.7s ease-out both;
+}
+
+.nl-animate-fade-up-delay-1 {
+  animation: nl-fade-up-soft 0.8s ease-out both;
+  animation-delay: 0.05s;
+}
+
+.nl-animate-fade-up-delay-2 {
+  animation: nl-fade-up-soft 0.9s ease-out both;
+  animation-delay: 0.1s;
+}
+
+.nl-animate-fade-up-delay-3 {
+  animation: nl-fade-up-soft 1s ease-out both;
+  animation-delay: 0.15s;
+}
+
+/* 轮播内容切换淡入动画（每次内容更新时触发） */
+@keyframes nl-carousel-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.nl-carousel-fade {
+  animation: nl-carousel-fade 0.45s ease-out;
+}
+
+/* 页面切换：新页面淡入上移 */
+@keyframes nl-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nl-page-enter {
+  animation: nl-page-enter 0.35s ease-out forwards;
+}
